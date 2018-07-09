@@ -1,0 +1,14 @@
+{
+  "name": "dm4bot",
+  "version": "1.0.0",
+  "description": "Un bot multifonctions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "M4t13u",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
