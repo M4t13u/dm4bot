@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 var prefix = "/";
 
-client.login(process.env.TOKEN);
+client.login("NDYyMzM5OTA1MTM4MzI3NTgz.DhghDg.73LuzRokb19cGZbT9xwuFBAbzbM");
 
 client.on("ready",() => {
     console.log("Le bot est prêt !")
@@ -29,7 +29,7 @@ client.on ('message',message => {
         .addField(prefix+"stats","Affiche les statistiques de l'utilisateur")
         .addField(prefix+"unmute","Permet d'unmute l'utilisateur mentionné (requiert certaines permissions)")
         .addField(prefix+"warn","Permet d'avertir l'utilisateur mentionné (requiert certaines permissions)")
-        .setFooter("Menu d'aide - DM4bot")
+        .setFooter("Menu d'aide - M4t13uBot")
         message.delete();
         message.author.send(affiche_aide)
         console.log("Quelqu'un a demandé la liste des commandes")
@@ -45,7 +45,7 @@ client.on ('message',message => {
         .addField(":id: du bot",`${client.user.id}`)
         .addField("Nombre de membres",message.guild.members.size)
         .addField("Nombre de salons et de catégories",message.guild.channels.size)
-        .setFooter("Menu d'infos - DM4bot")
+        .setFooter("Menu d'infos - M4t13uBot")
         message.delete();
         message.author.send(affiche_info)
         console.log("Quelqu'un a recherché les informations sur le serveur")
