@@ -1,17 +1,17 @@
 const Discord = require('discord.js');
 
-const bot = new Discord.Client();
+const client = new Discord.Client();
 
 var prefix = "/";
 
-bot.login(process.env.TOKEN);
+client.login(process.env.TOKEN);
 
-bot.on("ready",() => {
+client.on("ready",() => {
     console.log("Le bot est prêt !")
-    bot.user.setActivity("vous aider !")
+    client.user.setActivity("vous aider")
 });
 
-bot.on ('message',message => {
+client.on ('message',message => {
     if(message.content === prefix + "aide"){
       if (message.channel.type === "dm") return;
         var affiche_aide = new Discord.RichEmbed()
@@ -39,10 +39,10 @@ bot.on ('message',message => {
         var affiche_info = new Discord.RichEmbed()
         .setColor("#6699CC")
         .setTitle("Informations")
-        .setDescription(`Voici les informations sur le serveur **${message.guild.name}** et sur **${bot.user.username}**`)
-        .addField(":robot: Nom du bot",`${bot.user.username}`,true)
-        .addField(":hash: Discriminateur du bot",`#${bot.user.discriminator}`)
-        .addField(":id: du bot",`${bot.user.id}`)
+        .setDescription(`Voici les informations sur le serveur **${message.guild.name}** et sur **${client.user.username}**`)
+        .addField(":robot: Nom du bot",`${client.user.username}`,true)
+        .addField(":hash: Discriminateur du bot",`#${client.user.discriminator}`)
+        .addField(":id: du bot",`${client.user.id}`)
         .addField("Nombre de membres",message.guild.members.size)
         .addField("Nombre de salons et de catégories",message.guild.channels.size)
         .setFooter("Menu d'infos - DM4bot")
@@ -61,7 +61,7 @@ bot.on ('message',message => {
         if(!kick) {
             return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
         }
-        if(!message.guild.member(bot.user).hasPermission("KICK_MEMBERS")){
+        if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")){
             return message.author.send("**:x: Je n'ai pas la permission d'exécuter la commande "+prefix+"kick !**");
         }
         kick.kick().then(member => {
@@ -79,7 +79,7 @@ bot.on ('message',message => {
         if(!ban) {
             return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
         }
-        if(!message.guild.member(bot.user).hasPermission("BAN_MEMBERS")){
+        if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")){
             return message.author.send("**:x: Je n'ai pas la permission d'exécuter la commande "+prefix+"ban !**");
         }
         ban.ban().then(member => {
@@ -107,7 +107,7 @@ bot.on ('message',message => {
         if(!mute) {
             return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**");
         }
-        if(!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return message.author.send("**:x: Je n'ai pas la permission d'exécuter la commande "+prefix+"mute !**");
+        if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.author.send("**:x: Je n'ai pas la permission d'exécuter la commande "+prefix+"mute !**");
         message.channel.overwritePermissions(mute,{ SEND_MESSAGES: false}).then(member => {
             message.channel.send(`**${mute.user.username}** a été mute du salon par **${message.author.username}**.`);
         })
@@ -123,7 +123,7 @@ bot.on ('message',message => {
         if(!mute) {
             return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**");
         }
-        if(!message.guild.member(bot.user).hasPermission("ADMINISTRATOR")) return message.author.send("**:x: Je n'ai pas la permission d'exécuter la commande "+prefix+"unmute !**");
+        if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.author.send("**:x: Je n'ai pas la permission d'exécuter la commande "+prefix+"unmute !**");
         message.channel.overwritePermissions(mute,{ SEND_MESSAGES: true}).then(member => {
             message.channel.send(`**${mute.user.username}** a été unmute du salon par **${message.author.username}**.`);
         })
