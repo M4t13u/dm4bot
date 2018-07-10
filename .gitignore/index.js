@@ -52,6 +52,7 @@ client.on ('message',message => {
     }
     if(message.content.startsWith(prefix + "report")){
       if (message.channel.type === "dm") return;
+        message.delete();
         if(message.mentions.users.size === 0) {
             return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
         }
@@ -68,7 +69,6 @@ client.on ('message',message => {
         .addField("Raison",raison);
         let channelreport = message.guild.channels.find(`name`, "⚠-liste-des-reports");
         if(!channelreport) return message.author.send("**:x: Vous ne pouvez pas signaler d'utilisateur car aucun salon de signalement n'a été créé. Veuillez prévenir un administrateur.**");
-        message.delete().catch(O_o=>{});
         channelreport.send(affiche_report);
         console.log("Quelqu'un a signalé un utilisateur")
         return;
