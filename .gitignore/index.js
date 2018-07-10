@@ -374,7 +374,7 @@ if(!message.guild.member(message.author).hasPermission("MANAGE_GUILD")) return m
  
             }
  
-            message.author.send(`L'avertissement de **${mentioned.username}**\': **${args[1]}** a été retiré avec succès !`);
+            message.author.send(`L'avertissement **${args[1]}** de **${mentioned.username}** a été retiré avec succès !`);
  
             return;
  
