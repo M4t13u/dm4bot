@@ -50,9 +50,26 @@ client.on ('message',message => {
         message.author.send(affiche_botinfo)
         console.log("Quelqu'un a recherché les informations sur le bot")
     }
-    if(message.content === prefix + "report"){
+    if(message.content.startsWith(prefix + "report")){
       if (message.channel.type === "dm") return;
-        let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      message.delete();
+        if(message.mentions.users.size === 0) {
+            return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
+        }
+        var rUser = message.guild.member(message.mentions.users.first());
+        if(!rUser) {
+            return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
+        }
+        kick.kick().then(member => {
+            message.channel.send(`**${member.user.username}** a été expulsé(e) du serveur par **${message.author.username}**.`);
+        });
+    }
+    if(message.content.startsWith(prefix + "report")){
+      if (message.channel.type === "dm") return;
+        if(message.mentions.users.size === 0) {
+            return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
+        }
+        let rUser = message.guild.member(message.mentions.users.first());
         if(!rUser) return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**");
         let raison = args.join(" ").slice(22);
         let affiche_report = new Discord.RichEmbed()
@@ -63,7 +80,7 @@ client.on ('message',message => {
         .addField("Localisation",message.channel)
         .addField("Signalé le",message.createdAt)
         .addField("Raison",raison);
-        let channelreport = message.guild.channels.find(`name`, "liste-des-reports");
+        let channelreport = message.guild.channels.find(`name`, "⚠-liste-des-reports");
         if(!channelreport) return message.author.send("**:x: Vous ne pouvez pas signaler d'utilisateur car aucun salon de signalement n'a été créé. Veuillez prévenir un administrateur.**");
         message.delete().catch(O_o=>{});
         channelreport.send(affiche_report);
