@@ -8,7 +8,7 @@ client.login(process.env.TOKEN);
 
 client.on("ready",() => {
     console.log("Le bot est prêt !")
-    client.user.setActivity("1 serveur", {type: "WATCHING"})
+    client.user.setActivity("votre serveur", {type: "HELPING"})
 });
 
 client.on ('message',message => {
