@@ -58,16 +58,17 @@ client.on ('message',message => {
         }
         let rUser = message.guild.member(message.mentions.users.first());
         if(!rUser) return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**");
-        let raison = args.join(" ").slice(22);
-        let affiche_report = new Discord.RichEmbed()
+        var raison = args.join(" ").slice(22);
+        var affiche_report = new Discord.RichEmbed()
         .setColor("#6699CC")
         .setTitle("Nouveau signalement")
         .addField("Utilisateur signalé",`${rUser} qui a pour :id: ${rUser.id}`)
         .addField("Auteur",`${message.author} qui a pour :id: ${message.author.id}`)
         .addField("Localisation",message.channel)
         .addField("Signalé le",message.createdAt)
-        .addField("Raison",raison);
-        let channelreport = message.guild.channels.find(`name`, "⚠-liste-des-reports");
+        .addField("Raison",raison)
+        .setFooter("Menu de signalement - $DM4bot")
+        var channelreport = message.guild.channels.find(`name`, "⚠-liste-des-reports");
         if(!channelreport) return message.author.send("**:x: Vous ne pouvez pas signaler d'utilisateur car aucun salon de signalement n'a été créé. Veuillez prévenir un administrateur.**");
         channelreport.send(affiche_report);
         console.log("Quelqu'un a signalé un utilisateur")
