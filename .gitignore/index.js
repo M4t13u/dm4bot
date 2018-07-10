@@ -49,6 +49,19 @@ client.on ('message',message => {
         message.author.send(affiche_botinfo)
         console.log("Quelqu'un a recherché les informations sur le bot")
     }
+    if(message.content === prefix + "report"){
+      if (message.channel.type === "dm") return;
+        let rUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+        if(!rUser) return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**");
+        let raison = args.join(" ").slice(22);
+        let affiche_report = new Discord.RichEmbed()
+        .setColor("#6699CC")
+        .setTitle("Signalement")
+        .addField("Utilisateur signalé",`${rUser} qui a pour :id: ${rUser.id}`);
+        message.delete();
+        message.author.send(affiche_report)
+        console.log("Quelqu'un a signalé un utilisateur")
+    }
     if(message.content === prefix + "serveurinfo"){
       if (message.channel.type === "dm") return;
         let servicon = message.guild.iconURL;
