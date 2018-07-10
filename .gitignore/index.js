@@ -38,7 +38,7 @@ client.on ('message',message => {
     if(message.content === prefix + "botinfo"){
       if (message.channel.type === "dm") return;
         var affiche_botinfo = new Discord.RichEmbed()
-        .setColor("#6699CC")**${message.guild.name}**
+        .setColor("#6699CC")
         .setTitle("Informations")
         .setDescription(`Voici les informations sur le bot **${client.user.username}**`)
         .addField(":robot: Nom du bot",`${client.user.username}`,true)
