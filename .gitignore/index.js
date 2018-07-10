@@ -58,7 +58,7 @@ client.on ('message',message => {
         .setThumbnail(servicon)
         .setDescription(`Voici les informations sur le serveur **${message.guild.name}**`)
         .addField("Date de création",message.guild.createdAt)
-        .addField("Date de joignement", message.member.joinedAt[2] + ' ' + message.member.joinedAt[1] + ' ' + message.member.joinedAt[3])
+        .addField("Date de joignement",message.member.joinedAt)
         .addField("Nombre de membres",message.guild.memberCount)
         .addField("Nombre de salons et de catégories",message.guild.channels.size)
         .setFooter("Menu d'infos sur le serveur - DM4bot")
