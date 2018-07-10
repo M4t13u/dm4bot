@@ -25,7 +25,6 @@ client.on ('message',message => {
         .addField(prefix+"eff","Permet de supprimer le nombre de messages précisé (requiert certaines permissions)")
         .addField(prefix+"kick","Permet d'expulser l'utilisateur mentionné (requiert certaines permissions)")
         .addField(prefix+"mute","Permet de mute l'utilisateur mentionné du salon (requiert certaines permissions)")
-        .addField(prefix+"report","Permet de signaler l'utilisateur mentionné au serveur")
         .addField(prefix+"seewarns","Affiche la liste des avertissements de l'utilisateur (requiert certaines permissions)")
         .addField(prefix+"serveurinfo","Affiche les informations sur le serveur")
         .addField(prefix+"stats","Affiche les statistiques de l'utilisateur")
@@ -49,36 +48,6 @@ client.on ('message',message => {
         message.delete();
         message.author.send(affiche_botinfo)
         console.log("Quelqu'un a recherché les informations sur le bot")
-    }
-    if(message.content.startsWith(prefix + "report")){
-      if (message.channel.type === "dm") return;
-        
-        if(message.mentions.users.size === 0) {
-            return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
-        }
-        
-        var reported = message.guild.member(message.mentions.users.first());
-        if(!reported) return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**");
-        
-        var raison = args.join(" ").slice(22);
-        
-        var affiche_report = new Discord.RichEmbed()
-        .setColor("#6699CC")
-        .setTitle("Nouveau signalement")
-        .addField("Utilisateur signalé",`${rUser} qui a pour :id: ${rUser.id}`)
-        .addField("Auteur",`${message.author} qui a pour :id: ${message.author.id}`)
-        .addField("Localisation",message.channel)
-        .addField("Signalé le",message.createdAt)
-        .addField("Raison",raison)
-        .setFooter("Menu de signalement - DM4bot");
-        
-        var channelreport = message.guild.channels.find(`name`, "⚠-liste-des-reports");
-        
-        if(!channelreport) return message.author.send("**:x: Vous ne pouvez pas signaler d'utilisateur car aucun salon de signalement n'a été créé. Veuillez prévenir un administrateur.**");
-        
-        message.delete().catch(O_o=>{});
-        channelreport.send(affiche_report);
-        return;
     }
     if(message.content === prefix + "serveurinfo"){
       if (message.channel.type === "dm") return;
