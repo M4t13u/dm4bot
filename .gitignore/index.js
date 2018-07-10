@@ -146,7 +146,6 @@ client.on ('message',message => {
     }
     if(!message.content.startsWith(prefix)) return;
     if (message.channel.type === "dm") return;
-    message.delete();
     var args = message.content.substring(prefix.length).split(" ");
     switch (args[0].toLowerCase()){
         case "stats":
@@ -159,6 +158,7 @@ client.on ('message',message => {
         .addField(`:id: de l'utilisateur : `, msgauthor,true)
         .addField("::clock1030: Date de création : ", userCreateDate[2] + ' ' + userCreateDate[1] + ' ' + userCreateDate[3])
         message.author.send({embed: affiche_stats});
+        message.delete();
         break;
     }
 
