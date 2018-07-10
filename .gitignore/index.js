@@ -25,6 +25,7 @@ client.on ('message',message => {
         .addField(prefix+"eff","Permet de supprimer le nombre de messages précisé (requiert certaines permissions)")
         .addField(prefix+"kick","Permet d'expulser l'utilisateur mentionné (requiert certaines permissions)")
         .addField(prefix+"mute","Permet de mute l'utilisateur mentionné du salon (requiert certaines permissions)")
+        .addField(prefix+"report","Permet de signaler l'utilisateur mentionné au serveur")
         .addField(prefix+"seewarns","Affiche la liste des avertissements de l'utilisateur (requiert certaines permissions)")
         .addField(prefix+"serveurinfo","Affiche les informations sur le serveur")
         .addField(prefix+"stats","Affiche les statistiques de l'utilisateur")
