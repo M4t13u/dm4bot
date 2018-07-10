@@ -63,7 +63,7 @@ client.on ('message',message => {
         .addField("Localisation",message.channel)
         .addField("Signalé le",message.createdAt)
         .addField("Raison",raison);
-        let channelreport = message.guild.channels.find(`name`, "⚠-liste-des-reports");
+        let channelreport = message.guild.channels.find(`name`, "liste-des-reports");
         if(!channelreport) return message.author.send("**:x: Vous ne pouvez pas signaler d'utilisateur car aucun salon de signalement n'a été créé. Veuillez prévenir un administrateur.**");
         message.delete().catch(O_o=>{});
         channelreport.send(affiche_report);
