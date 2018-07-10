@@ -68,7 +68,6 @@ client.on ('message',message => {
         message.delete().catch(O_o=>{});
         channelreport.send(affiche_report);
         console.log("Quelqu'un a signalé un utilisateur")
-        return;
     }
     if(message.content === prefix + "serveurinfo"){
       if (message.channel.type === "dm") return;
