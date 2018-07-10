@@ -52,20 +52,6 @@ client.on ('message',message => {
     }
     if(message.content.startsWith(prefix + "report")){
       if (message.channel.type === "dm") return;
-      message.delete();
-        if(message.mentions.users.size === 0) {
-            return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
-        }
-        var rUser = message.guild.member(message.mentions.users.first());
-        if(!rUser) {
-            return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
-        }
-        kick.kick().then(member => {
-            message.channel.send(`**${member.user.username}** a été expulsé(e) du serveur par **${message.author.username}**.`);
-        });
-    }
-    if(message.content.startsWith(prefix + "report")){
-      if (message.channel.type === "dm") return;
         if(message.mentions.users.size === 0) {
             return message.author.send("**:x: Vous n'avez mentionné personne ou l'utilisateur mentionné n'existe pas !**")
         }
