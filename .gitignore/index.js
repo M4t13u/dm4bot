@@ -20,12 +20,13 @@ client.on ('message',message => {
         .setDescription("Voici la liste complète des commandes exécutables")
         .addField(prefix+"aide","Affiche la liste des commandes")
         .addField(prefix+"ban","Permet de bannir l'utilisateur mentionné (requiert certaines permissions)")
+        .addField(prefix+"botinfo","Affiche les informations sur le bot")
         .addField(prefix+"deletewarns","Permet de retirer un certain nombre d'avertissements de l'utilisateur (requiert certaines permissions)")
         .addField(prefix+"eff","Permet de supprimer le nombre de messages précisé (requiert certaines permissions)")
-        .addField(prefix+"info","Affiche les informations sur le serveur et sur le bot")
         .addField(prefix+"kick","Permet d'expulser l'utilisateur mentionné (requiert certaines permissions)")
         .addField(prefix+"mute","Permet de mute l'utilisateur mentionné du salon (requiert certaines permissions)")
         .addField(prefix+"seewarns","Affiche la liste des avertissements de l'utilisateur (requiert certaines permissions)")
+        .addField(prefix+"serveurinfo","Affiche les informations sur le serveur")
         .addField(prefix+"stats","Affiche les statistiques de l'utilisateur")
         .addField(prefix+"unmute","Permet d'unmute l'utilisateur mentionné (requiert certaines permissions)")
         .addField(prefix+"warn","Permet d'avertir l'utilisateur mentionné (requiert certaines permissions)")
@@ -34,20 +35,35 @@ client.on ('message',message => {
         message.author.send(affiche_aide)
         console.log("Quelqu'un a demandé la liste des commandes")
     }
-    if(message.content === prefix + "info"){
+    if(message.content === prefix + "botinfo"){
       if (message.channel.type === "dm") return;
-        var affiche_info = new Discord.RichEmbed()
-        .setColor("#6699CC")
+        var affiche_botinfo = new Discord.RichEmbed()
+        .setColor("#6699CC")**${message.guild.name}**
         .setTitle("Informations")
-        .setDescription(`Voici les informations sur le serveur **${message.guild.name}** et sur **${client.user.username}**`)
+        .setDescription(`Voici les informations sur le bot **${client.user.username}**`)
         .addField(":robot: Nom du bot",`${client.user.username}`,true)
         .addField(":hash: Discriminateur du bot",`#${client.user.discriminator}`)
         .addField(":id: du bot",`${client.user.id}`)
-        .addField("Nombre de membres",message.guild.members.size)
-        .addField("Nombre de salons et de catégories",message.guild.channels.size)
-        .setFooter("Menu d'infos - DM4bot")
+        .setFooter("Menu d'infos sur le bot - DM4bot")
         message.delete();
-        message.author.send(affiche_info)
+        message.author.send(affiche_botinfo)
+        console.log("Quelqu'un a recherché les informations sur le bot")
+    }
+    if(message.content === prefix + "serveurinfo"){
+      if (message.channel.type === "dm") return;
+        let servicon = message.guild.iconURL;
+        var affiche_serveurinfo = new Discord.RichEmbed()
+        .setColor("#6699CC")
+        .setTitle("Informations")
+        .setThumbnail(servicon)
+        .setDescription(`Voici les informations sur le serveur **${message.guild.name}**`)
+        .addField("Date de création",message.guild.createdAt)
+        .addField("Date de joignement",message.guild.joinedAt)
+        .addField("Nombre de membres",message.guild.memberCount)
+        .addField("Nombre de salons et de catégories",message.guild.channels.size)
+        .setFooter("Menu d'infos sur le serveur - DM4bot")
+        message.delete();
+        message.author.send(affiche_serveurinfo)
         console.log("Quelqu'un a recherché les informations sur le serveur")
     }
     if(message.content.startsWith(prefix + "kick")){
